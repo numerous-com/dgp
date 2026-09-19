@@ -1,0 +1,21 @@
+{
+  "dgp": "0.1",
+  "record_type": "event_page",
+  "stream_id": "farm-study-events",
+  "events": [
+    {
+      "event_id": "event-101",
+      "stream_id": "farm-study-events",
+      "sequence": 101,
+      "occurred_at": "2026-09-19T16:02:00Z",
+      "kind": "job_updated",
+      "resource_ref": "/dgp/jobs/job-01/revisions/3",
+      "resource_revision": 3,
+      "correlation_id": "batch-001"
+    }
+  ],
+  "next_cursor": "opaque-cursor-after-101",
+  "has_more": false,
+  "snapshot_ref": "urn:example:study-snapshot:100",
+  "snapshot_watermark": 100
+}

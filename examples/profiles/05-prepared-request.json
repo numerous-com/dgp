@@ -1,0 +1,9 @@
+{
+  "dgp": "0.1",
+  "record_type": "prepared_operation_request",
+  "operation_id": "farm.evaluation_decision",
+  "operation_version": "1",
+  "variables": {
+    "frame_id": "frame-study"
+  }
+}

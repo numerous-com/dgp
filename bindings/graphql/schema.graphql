@@ -1,0 +1,86 @@
+"""Canonical DGP record or app-specific JSON; validate using the indicated JSON Schema."""
+scalar JSON
+scalar DateTime
+"""Non-negative integral value; resolver serialization must preserve the canonical number losslessly."""
+scalar DgpInteger
+
+schema { query: Query mutation: Mutation subscription: Subscription }
+
+type Query {
+  dgpManifest: JSON!
+  capabilityCatalogue: JSON!
+  preparedOperations: JSON!
+  frame(id: ID!): DgpFrame
+  frameView(frameId: ID!, viewId: ID!, viewVersion: String!, variables: JSON): FrameProjection
+  evaluation(id: ID!): EvaluationJob
+  events(after: String, first: Int = 100): EventPage!
+}
+
+type DgpFrame {
+  """Complete immutable core Frame; required when not using an assessment-ready projection."""
+  record: JSON!
+  frameId: ID!
+  surfaceId: ID!
+  expiresAt: DateTime!
+  decisions: [DecisionSummary!]!
+}
+type DecisionSummary { decisionId: ID! kind: String! question: String! }
+type FrameProjection {
+  """Complete FrameProjection record, including preserved envelope and evidence manifest."""
+  record: JSON!
+  frameId: ID!
+  projectionId: ID!
+  purpose: ProjectionPurpose!
+  data: JSON!
+}
+enum ProjectionPurpose { BROWSE ASSESS }
+
+type Mutation {
+  recordAssessment(request: JSON!): AssessmentResult!
+  commit(request: CommitInput!): CommitResult!
+  """Native app operation, NOT a DGP commit. Shared domain rules and revisions still apply."""
+  nativeFarmSetLocation(workspaceId: ID!, expectedRevision: DgpInteger!, input: LocationInput!, idempotencyKey: String!): NativeUpdateResult!
+}
+input CommitInput {
+  frameId: ID!
+  decisionId: ID!
+  assessmentId: ID!
+  idempotencyKey: String!
+}
+"""Exactly one supplied non-null field. Requires a OneOf-capable GraphQL implementation."""
+input LocationInput @oneOf {
+  address: String
+  coordinates: CoordinatesInput
+  selectedPlaceId: ID
+}
+input CoordinatesInput { latitude: Float! longitude: Float! }
+
+type Assessment { record: JSON! assessmentId: ID! }
+type CommitReceipt { record: JSON! receiptId: ID! }
+type DgpProblem { record: JSON! code: String! message: String! }
+union AssessmentResult = Assessment | DgpProblem
+union CommitResult = CommitReceipt | DgpProblem
+union NativeUpdateResult = NativeUpdate | DgpProblem
+"""Native outcome is not represented as a DGP receipt."""
+type NativeUpdate { operationId: ID! workspaceId: ID! workspaceRevision: DgpInteger! }
+
+type EvaluationJob {
+  record: JSON!
+  jobId: ID!
+  revision: DgpInteger!
+  outcome: EvaluationOutcome!
+}
+union EvaluationOutcome = EvaluationPending | EvaluationSucceeded | EvaluationFailed | EvaluationCancelled | EvaluationReconciling
+type EvaluationPending { state: PendingState! }
+enum PendingState { QUEUED RUNNING CANCEL_REQUESTED }
+type EvaluationSucceeded { resultRef: ID! }
+type EvaluationFailed { code: String! message: String! }
+type EvaluationCancelled { explanation: String }
+type EvaluationReconciling { explanation: String! }
+
+type EventPage { record: JSON! nextCursor: String! hasMore: Boolean! events: [DgpEvent!]! }
+type DgpEvent { eventId: ID! streamId: ID! sequence: DgpInteger! kind: String! resourceRef: String! resourceRevision: DgpInteger! }
+type Subscription {
+  """Transport must preserve the negotiated DGP cursor/retention/reconciliation contract."""
+  dgpEvents(after: String!): DgpEvent!
+}

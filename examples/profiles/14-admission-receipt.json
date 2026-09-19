@@ -1,0 +1,41 @@
+{
+  "dgp": "0.1",
+  "receipt_id": "admission-receipt-01",
+  "frame_id": "frame-study",
+  "decision_id": "frame-study:evaluate_variants",
+  "assessment_id": "assessment-batch-01",
+  "submitted_by": "example-agent",
+  "status": "succeeded",
+  "committed_at": "2026-09-19T16:01:00Z",
+  "state_revision": 2,
+  "effect": {
+    "world_mutation": "internal",
+    "recovery": "unknown",
+    "data_egress": "approved_provider",
+    "speculation": "forbidden",
+    "required_actor": "any_authorized",
+    "simulation": false
+  },
+  "outcome": "Admitted two synthetic scenario jobs; no completed energy calculation is claimed.",
+  "next_frame_href": "/dgp/surfaces/study-example/frame",
+  "extensions": {
+    "dgp.evaluations": {
+      "batch_id": "batch-001",
+      "policy_ref": "farm-energy-policy@1",
+      "canonical_operation_id": "farm.evaluate",
+      "admission_mode": "all_or_nothing",
+      "items": [
+        {
+          "scenario_ref": "scenario-01",
+          "disposition": "job",
+          "job_id": "job-01"
+        },
+        {
+          "scenario_ref": "scenario-02",
+          "disposition": "job",
+          "job_id": "job-02"
+        }
+      ]
+    }
+  }
+}

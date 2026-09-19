@@ -1,0 +1,20 @@
+{
+  "dgp": "0.1",
+  "record_type": "evaluation_job",
+  "job_id": "job-01",
+  "job_revision": 2,
+  "study_ref": "basis-001",
+  "scenario_ref": "scenario-01",
+  "source_frame_id": "frame-study",
+  "admission_receipt_id": "admission-receipt-01",
+  "canonical_operation_id": "farm.evaluate",
+  "state": "running",
+  "accepted_at": "2026-09-19T16:01:00Z",
+  "updated_at": "2026-09-19T16:01:05Z",
+  "cost": {
+    "unit": "full_scenario_simulation",
+    "reserved_units": 1,
+    "consumed_units": 0,
+    "accounting_status": "reserved"
+  }
+}

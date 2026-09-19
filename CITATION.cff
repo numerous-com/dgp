@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this repository when referring to Decision Graph Protocol."
+title: "DGP: Decision Graph Protocol for decision-based AI agents"
+type: software
+authors:
+  - name: Numerous
+repository-code: "https://github.com/numerous-com/dgp"
+url: "https://github.com/numerous-com/dgp"
+license: MIT
+keywords:
+  - Decision Graph Protocol
+  - decision-based agents
+  - TypeSafe
+  - Jev
+  - AI orchestration
+  - JSON Schema

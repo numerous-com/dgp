@@ -1,0 +1,53 @@
+query DiscoverInterfaces {
+  dgpManifest
+  capabilityCatalogue
+  preparedOperations
+}
+query ReadAssessmentView($frameId: ID!, $viewId: ID!, $viewVersion: String!) {
+  frameView(frameId: $frameId, viewId: $viewId, viewVersion: $viewVersion) {
+    frameId
+    projectionId
+    record
+  }
+}
+mutation RecordAssessment($request: JSON!) {
+  recordAssessment(request: $request) {
+    __typename
+    ... on Assessment { assessmentId record }
+    ... on DgpProblem { code message record }
+  }
+}
+mutation CommitOfferedDecision($request: CommitInput!) {
+  commit(request: $request) {
+    __typename
+    ... on CommitReceipt { receiptId record }
+    ... on DgpProblem { code message record }
+  }
+}
+query ReadJobs($first: ID!, $second: ID!) {
+  first: evaluation(id: $first) { ...JobStatus }
+  second: evaluation(id: $second) { ...JobStatus }
+}
+fragment JobStatus on EvaluationJob {
+  jobId
+  revision
+  record
+  outcome {
+    __typename
+    ... on EvaluationSucceeded { resultRef }
+    ... on EvaluationFailed { code message }
+    ... on EvaluationPending { state }
+    ... on EvaluationCancelled { explanation }
+    ... on EvaluationReconciling { explanation }
+  }
+}
+mutation NativeLocationEdit($workspaceId: ID!, $expectedRevision: DgpInteger!, $location: LocationInput!, $key: String!) {
+  nativeFarmSetLocation(workspaceId: $workspaceId, expectedRevision: $expectedRevision, input: $location, idempotencyKey: $key) {
+    __typename
+    ... on NativeUpdate { operationId workspaceId workspaceRevision }
+    ... on DgpProblem { code message record }
+  }
+}
+subscription WatchStudy($after: String!) {
+  dgpEvents(after: $after) { eventId streamId sequence kind resourceRef resourceRevision }
+}

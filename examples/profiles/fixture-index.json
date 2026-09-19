@@ -1,0 +1,16 @@
+{
+  "01-capability-catalogue.json": "CapabilityCatalogue",
+  "02-assessment-projection.json": "FrameProjection",
+  "03-assessment-input-manifest.json": "AssessmentInputManifest",
+  "04-prepared-operations.json": "PreparedOperationCatalogue",
+  "05-prepared-request.json": "PreparedOperationRequest",
+  "06-evaluation-policy.json": "EvaluationPolicy",
+  "07-evaluation-admission.json": "EvaluationAdmission",
+  "08-job-queued.json": "EvaluationJob",
+  "09-job-running.json": "EvaluationJob",
+  "10-job-succeeded.json": "EvaluationJob",
+  "11-events.json": "EventPage",
+  "12-handoff.json": "Handoff",
+  "13-batch-assessment.json": "AssessmentRequest",
+  "14-admission-receipt.json": "Receipt"
+}

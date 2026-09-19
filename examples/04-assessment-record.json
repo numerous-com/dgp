@@ -1,0 +1,22 @@
+{
+  "dgp": "0.1",
+  "assessment_id": "a-example-retry",
+  "frame_id": "f-94d266adb6584d28bc0a087db736b494",
+  "decision_id": "f-94d266adb6584d28bc0a087db736b494:recovery",
+  "mode": "live",
+  "resolver": {
+    "kind": "rule",
+    "provider": "local-demo",
+    "model": "fixture-not-jev"
+  },
+  "result": {
+    "status": "answered",
+    "answer": {
+      "choice": "retry",
+      "input": {}
+    }
+  },
+  "recorded_at": "2026-09-19T17:58:34.265012Z",
+  "submitted_by": "agent-example",
+  "claim_provenance": "client_asserted"
+}

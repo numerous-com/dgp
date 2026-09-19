@@ -1,0 +1,108 @@
+{
+  "dgp": "0.1",
+  "graph_id": "thread-recovery",
+  "graph_version": "1",
+  "completeness": "complete_template",
+  "semantics": "Descriptive template, not an executable guard language. Current frames are authoritative. Repeated visits create new decision instances.",
+  "nodes": [
+    {
+      "id": "recovery",
+      "kind": "choice",
+      "summary": "Choose a bounded next recovery action."
+    },
+    {
+      "id": "analysis_result",
+      "kind": "input",
+      "summary": "Supply derived diagnostic text."
+    },
+    {
+      "id": "update",
+      "kind": "choice",
+      "summary": "Choose whether to draft an update or finish."
+    },
+    {
+      "id": "draft_result",
+      "kind": "input",
+      "summary": "Supply draft text."
+    },
+    {
+      "id": "review",
+      "kind": "choice",
+      "summary": "Publish, discard, or hold the draft."
+    },
+    {
+      "id": "done",
+      "kind": "terminal",
+      "summary": "No autonomous work remains."
+    },
+    {
+      "id": "note",
+      "kind": "input",
+      "summary": "Optional free-text note; available in every state."
+    },
+    {
+      "id": "attach_image",
+      "kind": "input",
+      "summary": "Optional image evidence; available in every state."
+    }
+  ],
+  "edges": [
+    {
+      "from": "recovery",
+      "to": "update",
+      "on": "retry",
+      "guard_summary": "Demo fixture succeeds on its single retry; real test outcomes would add branches."
+    },
+    {
+      "from": "recovery",
+      "to": "analysis_result",
+      "on": "request_reasoning"
+    },
+    {
+      "from": "analysis_result",
+      "to": "recovery",
+      "on": "submit"
+    },
+    {
+      "from": "recovery",
+      "to": "done",
+      "on": "investigate"
+    },
+    {
+      "from": "recovery",
+      "to": "done",
+      "on": "pause"
+    },
+    {
+      "from": "update",
+      "to": "draft_result",
+      "on": "draft_update"
+    },
+    {
+      "from": "update",
+      "to": "done",
+      "on": "finish"
+    },
+    {
+      "from": "draft_result",
+      "to": "review",
+      "on": "submit"
+    },
+    {
+      "from": "review",
+      "to": "done",
+      "on": "publish",
+      "guard_summary": "Authenticated human only; appends to a LOCAL simulated bulletin."
+    },
+    {
+      "from": "review",
+      "to": "done",
+      "on": "discard"
+    },
+    {
+      "from": "review",
+      "to": "done",
+      "on": "hold"
+    }
+  ]
+}

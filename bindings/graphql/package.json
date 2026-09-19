@@ -1,0 +1,7 @@
+{
+  "name": "dgp-0-1-graphql-contract-check",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node validate.mjs"},
+  "devDependencies": {"graphql": "^16.11.0"}
+}

@@ -1,0 +1,9 @@
+Mode: offline browser renderer with in-memory DGP responses. Browser loopback navigation was blocked by environment policy; real HTTP flows were separately tested with the Python client.
+
+PASS: Offline DOM renderer displays both authorized fixture surfaces.
+PASS: Publication control is rendered for the review frame; no publication occurred automatically.
+PASS: UI assessment/commit payloads successfully publish one LOCAL fixture entry through the engine.
+PASS: Free-text Unicode round-trip; script-like text is not executed.
+PASS: Full disclosure is rendered in the raw frame inspector.
+PASS: 390-pixel viewport has no horizontal overflow.
+PASS: No JavaScript errors in the exercised offline flows.

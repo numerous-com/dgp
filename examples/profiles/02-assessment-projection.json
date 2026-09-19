@@ -1,0 +1,286 @@
+{
+  "dgp": "0.1",
+  "record_type": "frame_projection",
+  "projection_id": "projection-study-eval-1",
+  "view_id": "farm.evaluation_decision",
+  "view_version": "1",
+  "canonical_frame_href": "/dgp/frames/frame-study",
+  "purpose": "assess",
+  "decision_scope": [
+    "frame-study:evaluate_variants"
+  ],
+  "decisions": [
+    {
+      "decision_id": "frame-study:evaluate_variants",
+      "node_id": "evaluate_variants",
+      "kind": "input",
+      "question": "Submit explicit candidate variants for evaluation against basis-001. Keep demand and existing PV fixed. Results do not change the selected design.",
+      "evidence_ids": [
+        "study-basis",
+        "evaluation-capabilities"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [],
+        "depends_on": [],
+        "extensions": {
+          "quota_guard": "Atomically validate and reserve current workspace/tenant capacity at admission. The displayed counts are not reservations."
+        }
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "base_scenario_ref": {
+            "const": "base-001"
+          },
+          "variants": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 16,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "site_ref": {
+                  "enum": [
+                    "site-01",
+                    "site-02",
+                    "site-03",
+                    "site-04",
+                    "site-05",
+                    "site-06",
+                    "site-07",
+                    "site-08",
+                    "site-09",
+                    "site-10",
+                    "site-11",
+                    "site-12"
+                  ]
+                },
+                "turbine_configuration_ref": {
+                  "enum": [
+                    "turbine-A",
+                    "turbine-B",
+                    "turbine-C"
+                  ]
+                },
+                "battery_configuration_ref": {
+                  "enum": [
+                    "battery-00",
+                    "battery-10",
+                    "battery-20",
+                    "battery-30",
+                    "battery-40",
+                    "battery-50"
+                  ]
+                }
+              },
+              "required": [
+                "site_ref",
+                "turbine_configuration_ref",
+                "battery_configuration_ref"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "base_scenario_ref",
+          "variants"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "approved_provider",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "extensions": {
+        "budgeted-evaluations@0.1": {
+          "operation": "evaluate_variants",
+          "completion": "asynchronous",
+          "commit_outcome": "jobs_admitted_not_calculations_completed",
+          "mutates_workspace_selection": false,
+          "basis_ref": "basis-001",
+          "evaluator_ref": "farm-energy-evaluator@1"
+        }
+      }
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "study-basis",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "farm-energy-example"
+      },
+      "content": {
+        "basis_ref": "basis-001",
+        "base_scenario_ref": "base-001",
+        "fixed": {
+          "consumption_profile_ref": "load-profile-v3",
+          "existing_pv_ref": "existing-pv-v2",
+          "baseline_ref": "existing-system-baseline-v1",
+          "weather_bundle_ref": "weather-v1",
+          "tariffs_ref": "tariffs-v4",
+          "dispatch_policy_ref": "dispatch-v2"
+        },
+        "objective": {
+          "metric": "annualized_net_savings_dkk",
+          "direction": "maximize",
+          "definition_ref": "economics-v2"
+        },
+        "constraints": [
+          {
+            "metric": "self_sufficiency_fraction",
+            "operator": "gte",
+            "value": 0.5,
+            "scope": "declared_simulation_period",
+            "definition_ref": "energy-accounting-v1"
+          }
+        ],
+        "scope_ref": "approved-search-area-v1",
+        "assumptions_are_confirmed": true,
+        "synthetic_example": true
+      }
+    },
+    {
+      "evidence_id": "evaluation-capabilities",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "farm-energy-example"
+      },
+      "content": {
+        "synthetic_example": true,
+        "max_running_evaluations": 4,
+        "max_variants_per_submission": 16,
+        "max_queued_evaluations": 32,
+        "quota_scope": "workspace-and-tenant",
+        "simulation_budget": {
+          "limit": 240,
+          "consumed": 0,
+          "reserved": 0,
+          "unit": "full_scenario_simulation"
+        },
+        "preprocessing_budget": {
+          "limit": 100,
+          "consumed": 0,
+          "reserved": 0,
+          "unit": "resource_preprocessing_credit"
+        },
+        "cache_hits_consume_simulation_budget": false,
+        "idempotent_replays_consume_simulation_budget": false,
+        "budget_counts_are_reservations": false,
+        "site_refs": [
+          "site-01",
+          "site-02",
+          "site-03",
+          "site-04",
+          "site-05",
+          "site-06",
+          "site-07",
+          "site-08",
+          "site-09",
+          "site-10",
+          "site-11",
+          "site-12"
+        ],
+        "turbine_configuration_refs": [
+          "turbine-A",
+          "turbine-B",
+          "turbine-C"
+        ],
+        "battery_configurations": [
+          {
+            "ref": "battery-00",
+            "nominal_kwh": 0,
+            "technical_parameters_ref": "battery-00-technical@1"
+          },
+          {
+            "ref": "battery-10",
+            "nominal_kwh": 10,
+            "technical_parameters_ref": "battery-10-technical@1"
+          },
+          {
+            "ref": "battery-20",
+            "nominal_kwh": 20,
+            "technical_parameters_ref": "battery-20-technical@1"
+          },
+          {
+            "ref": "battery-30",
+            "nominal_kwh": 30,
+            "technical_parameters_ref": "battery-30-technical@1"
+          },
+          {
+            "ref": "battery-40",
+            "nominal_kwh": 40,
+            "technical_parameters_ref": "battery-40-technical@1"
+          },
+          {
+            "ref": "battery-50",
+            "nominal_kwh": 50,
+            "technical_parameters_ref": "battery-50-technical@1"
+          }
+        ],
+        "domain_notes": "These are invented catalogue labels and steps, not actual equipment specifications."
+      }
+    }
+  ],
+  "evidence_manifest": [
+    {
+      "evidence_id": "study-basis",
+      "required_for": [
+        "frame-study:evaluate_variants"
+      ],
+      "status": "included"
+    },
+    {
+      "evidence_id": "evaluation-capabilities",
+      "required_for": [
+        "frame-study:evaluate_variants"
+      ],
+      "status": "included"
+    }
+  ],
+  "omitted_fields": [],
+  "data": {
+    "note": "Illustrative contract fixture; no production or savings calculation has been run."
+  },
+  "required_features": [
+    "core@0.1",
+    "frame-projections@0.1",
+    "budgeted-evaluations@0.1"
+  ],
+  "frame_id": "frame-study",
+  "surface_id": "study-example",
+  "graph_id": "farm-energy-calculator",
+  "graph_version": "0.1-example",
+  "policy_ref": "farm-energy-policy@1",
+  "created_at": "2026-09-19T16:00:00Z",
+  "expires_at": "2026-09-19T16:15:00Z",
+  "read_set": [
+    {
+      "resource_id": "basis:basis-001",
+      "revision": 1
+    },
+    {
+      "resource_id": "catalogue:farm-energy",
+      "revision": 1
+    },
+    {
+      "resource_id": "policy:farm-energy",
+      "revision": 1
+    }
+  ]
+}

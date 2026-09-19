@@ -1,0 +1,139 @@
+{
+  "dgp": "0.1",
+  "frame_id": "frame-location",
+  "surface_id": "farm-example",
+  "graph_id": "farm-energy-calculator",
+  "graph_version": "0.1-example",
+  "policy_ref": "farm-energy-policy@1",
+  "created_at": "2026-09-19T16:00:00Z",
+  "expires_at": "2026-09-19T16:15:00Z",
+  "read_set": [
+    {
+      "resource_id": "workspace:farm-example",
+      "revision": 0
+    },
+    {
+      "resource_id": "policy:farm-energy",
+      "revision": 1
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "location-state",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "farm-energy-example"
+      },
+      "content": {
+        "status": "needs_location",
+        "location": null,
+        "message": "Production, system sizing, and scenario evaluations are unavailable until a location is resolved."
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "frame-location:provide_location",
+      "node_id": "provide_location",
+      "kind": "input",
+      "question": "Provide the farm origin using an address query or explicit coordinates. A map click supplies a point. Address results may require a follow-up choice.",
+      "evidence_ids": [
+        "location-state"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "workspace:farm-example"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "address_query"
+              },
+              "query": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "kind",
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "point"
+              },
+              "crs": {
+                "const": "EPSG:4326"
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "source": {
+                "enum": [
+                  "map",
+                  "coordinate_entry"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "crs",
+              "latitude",
+              "longitude",
+              "source"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "approved_provider",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "extensions": {
+        "presentation_hints": {
+          "controls": [
+            "address_search",
+            "map",
+            "coordinate_fields"
+          ],
+          "advisory_only": true
+        }
+      }
+    }
+  ],
+  "disclosure": {
+    "requested": "next",
+    "provided": "next"
+  },
+  "service_calls_remaining": 2,
+  "required_features": [
+    "core@0.1"
+  ]
+}

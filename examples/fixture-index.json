@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01-manifest.json",
+    "schema": "Manifest"
+  },
+  {
+    "file": "02-frame-next.json",
+    "schema": "Frame"
+  },
+  {
+    "file": "03-assessment-request.json",
+    "schema": "AssessmentRequest"
+  },
+  {
+    "file": "04-assessment-record.json",
+    "schema": "Assessment"
+  },
+  {
+    "file": "05-commit-request.json",
+    "schema": "CommitRequest"
+  },
+  {
+    "file": "06-receipt.json",
+    "schema": "Receipt"
+  },
+  {
+    "file": "07-next-frame.json",
+    "schema": "Frame"
+  },
+  {
+    "file": "08-frame-horizon.json",
+    "schema": "Frame"
+  },
+  {
+    "file": "09-frame-full.json",
+    "schema": "Frame"
+  },
+  {
+    "file": "10-static-graph.json",
+    "schema": "Graph"
+  },
+  {
+    "file": "11-frame-image.json",
+    "schema": "Frame"
+  }
+]

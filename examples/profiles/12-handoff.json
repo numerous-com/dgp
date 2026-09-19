@@ -1,0 +1,34 @@
+{
+  "dgp": "0.1",
+  "record_type": "handoff",
+  "handoff_id": "load-upload-01",
+  "handoff_revision": 1,
+  "application_id": "farm-energy",
+  "origin_frame_id": "frame-load-request",
+  "origin_decision_id": "frame-load-request:import-profile",
+  "capability_id": "import-load-profile",
+  "canonical_operation_id": "farm.load.import",
+  "target_interface_id": "farm-api",
+  "scope_ref": "workspace:farm-001",
+  "arguments": {
+    "workspace_ref": "farm-001",
+    "format": "csv"
+  },
+  "expected_result_schema": {
+    "type": "object",
+    "properties": {
+      "load_profile_ref": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "load_profile_ref"
+    ],
+    "additionalProperties": false
+  },
+  "correlation_id": "operation-load-import-01",
+  "expires_at": "2026-09-19T16:15:00Z",
+  "effect": "write",
+  "state": "offered"
+}

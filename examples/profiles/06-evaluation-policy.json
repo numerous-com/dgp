@@ -1,0 +1,25 @@
+{
+  "dgp": "0.1",
+  "record_type": "evaluation_policy",
+  "policy_id": "farm-energy-policy",
+  "policy_version": "1",
+  "scope": {
+    "application_id": "farm-energy",
+    "tenant_id": "example-tenant",
+    "workspace_id": "farm-001"
+  },
+  "as_of": "2026-09-19T16:00:00Z",
+  "limits": {
+    "max_running": 4,
+    "max_queued": 32,
+    "max_variants_per_submission": 16
+  },
+  "budget": {
+    "unit": "full_scenario_simulation",
+    "limit": 240,
+    "consumed": 0,
+    "reserved": 2
+  },
+  "cache_hits_consume_budget": false,
+  "admission_mode": "all_or_nothing"
+}

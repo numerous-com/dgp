@@ -1,0 +1,21 @@
+{
+  "dgp": "0.1",
+  "receipt_id": "r-8a425c84f552451f960a589b30ab1356",
+  "frame_id": "f-94d266adb6584d28bc0a087db736b494",
+  "decision_id": "f-94d266adb6584d28bc0a087db736b494:recovery",
+  "assessment_id": "a-example-retry",
+  "submitted_by": "agent-example",
+  "status": "succeeded",
+  "committed_at": "2026-09-19T17:58:34.266164Z",
+  "state_revision": 2,
+  "effect": {
+    "world_mutation": "internal",
+    "recovery": "unknown",
+    "data_egress": "none",
+    "speculation": "forbidden",
+    "required_actor": "any_authorized",
+    "simulation": true
+  },
+  "outcome": "Simulated one CI retry; fixture result is success. No tests were actually run.",
+  "next_frame_href": "/dgp/surfaces/thread-42/frame"
+}

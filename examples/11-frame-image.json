@@ -1,0 +1,260 @@
+{
+  "dgp": "0.1",
+  "frame_id": "f-d4b3743533a645d7b395f3ec801e216a",
+  "surface_id": "thread-73",
+  "graph_id": "thread-recovery",
+  "graph_version": "1",
+  "policy_ref": "thread-policy@1",
+  "created_at": "2026-09-19T17:58:34.286523Z",
+  "expires_at": "2026-09-19T18:13:34.286523Z",
+  "read_set": [
+    {
+      "resource_id": "thread:thread-73",
+      "revision": 2
+    },
+    {
+      "resource_id": "policy:thread-policy",
+      "revision": 1
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "state",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": {
+        "title": "Ambiguous integration failure",
+        "status": "blocked",
+        "retries": 0,
+        "reason_count": 0,
+        "draft_count": 0,
+        "service_calls": 0
+      }
+    },
+    {
+      "evidence_id": "failure-log",
+      "kind": "text",
+      "mime_type": "text/plain",
+      "required": true,
+      "trust": "untrusted",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": "Runner terminated. Last log line: loading configuration. No reliable error classification is available."
+    },
+    {
+      "evidence_id": "image-0",
+      "kind": "image",
+      "mime_type": "image/png",
+      "required": true,
+      "trust": "untrusted",
+      "source": {
+        "kind": "user",
+        "id": "human-example"
+      },
+      "blob": {
+        "href": "/dgp/blobs/thread-73/95b38287cd35877050bc8a9ab055f47354172b1542b3f65b69351c54fe3c04db",
+        "sha256": "95b38287cd35877050bc8a9ab055f47354172b1542b3f65b69351c54fe3c04db",
+        "byte_length": 68
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "f-d4b3743533a645d7b395f3ec801e216a:recovery",
+      "node_id": "recovery",
+      "kind": "choice",
+      "question": "Which immediate recovery route fits the reported failure?",
+      "evidence_ids": [
+        "state",
+        "failure-log",
+        "image-0"
+      ],
+      "dispatch": "automatic",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "options": [
+        {
+          "id": "retry",
+          "label": "Retry tests",
+          "meaning": "A transient failure prevented the tests from running. Retry once.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "investigate",
+          "label": "Investigate",
+          "meaning": "A persistent or unresolved issue needs engineering investigation. Stop autonomous recovery.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "request_reasoning",
+          "label": "Request reasoning",
+          "meaning": "The evidence is too ambiguous. Obtain one brief LLM analysis before judging again.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "pause",
+          "label": "Pause",
+          "meaning": "Do not act further; leave this thread for a human.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        }
+      ]
+    },
+    {
+      "decision_id": "f-d4b3743533a645d7b395f3ec801e216a:note",
+      "node_id": "note",
+      "kind": "input",
+      "question": "Add a free-text note to this thread.",
+      "evidence_ids": [
+        "state",
+        "failure-log",
+        "image-0"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    },
+    {
+      "decision_id": "f-d4b3743533a645d7b395f3ec801e216a:attach_image",
+      "node_id": "attach_image",
+      "kind": "input",
+      "question": "Attach PNG, JPEG or WebP evidence. It will be required evidence in subsequent frames.",
+      "evidence_ids": [
+        "state",
+        "failure-log",
+        "image-0"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "mime_type": {
+            "enum": [
+              "image/png",
+              "image/jpeg",
+              "image/webp"
+            ]
+          },
+          "data_base64": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 350000
+          }
+        },
+        "required": [
+          "mime_type",
+          "data_base64"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    }
+  ],
+  "disclosure": {
+    "requested": "next",
+    "provided": "next"
+  },
+  "service_calls_remaining": 3,
+  "required_features": [
+    "core@0.1",
+    "image-evidence@0.1"
+  ]
+}

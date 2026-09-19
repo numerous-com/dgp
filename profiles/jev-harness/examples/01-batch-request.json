@@ -1,0 +1,60 @@
+{
+  "dgp": "0.1",
+  "profile": "assessment-batching@0.1",
+  "batch_id": "batch-example-1",
+  "frame_id": "f-94d266adb6584d28bc0a087db736b494",
+  "shared_basis": {
+    "frame_sha256": "78b6bc9007e9398b53d579c588e830f0565874212820082c361adcbc8966961f",
+    "evidence": [
+      {
+        "evidence_id": "state",
+        "sha256": "c0bae5c251cd2521b18868941a5d86196afa32ae9cb109fcec691ff010e2925d"
+      },
+      {
+        "evidence_id": "failure-log",
+        "sha256": "71720ad6271c5786a63cf4c71ec5e0d04d725addd0e351f2650c36d965df571f"
+      }
+    ]
+  },
+  "items": [
+    {
+      "dgp": "0.1",
+      "assessment_id": "a-example-retry",
+      "frame_id": "f-94d266adb6584d28bc0a087db736b494",
+      "decision_id": "f-94d266adb6584d28bc0a087db736b494:recovery",
+      "mode": "live",
+      "resolver": {
+        "kind": "rule",
+        "provider": "local-demo",
+        "model": "fixture-not-jev"
+      },
+      "result": {
+        "status": "answered",
+        "answer": {
+          "choice": "retry",
+          "input": {}
+        }
+      }
+    },
+    {
+      "dgp": "0.1",
+      "assessment_id": "a-example-invalid-note",
+      "frame_id": "f-94d266adb6584d28bc0a087db736b494",
+      "decision_id": "f-94d266adb6584d28bc0a087db736b494:note",
+      "mode": "live",
+      "resolver": {
+        "kind": "rule",
+        "provider": "local-demo",
+        "model": "fixture-not-jev"
+      },
+      "result": {
+        "status": "answered",
+        "answer": {
+          "value": {
+            "text": ""
+          }
+        }
+      }
+    }
+  ]
+}

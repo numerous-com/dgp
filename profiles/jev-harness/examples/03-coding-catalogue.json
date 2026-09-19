@@ -1,0 +1,241 @@
+{
+  "dgp": "0.1",
+  "profile": "coding-tools@0.1",
+  "coverage": "partial",
+  "catalogue_version": "1",
+  "operations": [
+    {
+      "canonical_operation_id": "repo.inventory",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. repo.inventory",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "repository_id"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "none",
+        "recovery": "not_applicable",
+        "data_egress": "none",
+        "speculation": "evaluation_only",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "read",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "repo.read",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. repo.read",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        },
+        "required": [
+          "repository_id",
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "none",
+        "recovery": "not_applicable",
+        "data_egress": "none",
+        "speculation": "evaluation_only",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "read",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "repo.search",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. repo.search",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "literal": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "repository_id",
+          "literal"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "none",
+        "recovery": "not_applicable",
+        "data_egress": "none",
+        "speculation": "evaluation_only",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "read",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "repo.gitstatus",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. repo.gitstatus",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "repository_id"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "none",
+        "recovery": "not_applicable",
+        "data_egress": "none",
+        "speculation": "evaluation_only",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "read",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "patch.prepare",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. patch.prepare",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "proposal_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "repository_id",
+          "proposal_ref"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "sandbox_only",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "prepare",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "patch.apply",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. patch.apply",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "artifact_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "repository_id",
+          "artifact_ref"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "guarded_apply",
+      "implementation": "not_implemented"
+    },
+    {
+      "canonical_operation_id": "tests.run",
+      "operation_version": "1",
+      "description": "Contract example only; no installed executor. tests.run",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "repository_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "suite_id": {
+            "enum": [
+              "unit"
+            ]
+          }
+        },
+        "required": [
+          "repository_id",
+          "suite_id"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": false
+      },
+      "execution": "sandboxed_test",
+      "implementation": "not_implemented"
+    }
+  ]
+}

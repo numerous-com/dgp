@@ -1,0 +1,293 @@
+{
+  "dgp": "0.1",
+  "frame_id": "f-7a35c4f055484d2ab2b8e10a21a274b5",
+  "surface_id": "thread-73",
+  "graph_id": "thread-recovery",
+  "graph_version": "1",
+  "policy_ref": "thread-policy@1",
+  "created_at": "2026-09-19T17:58:34.272483Z",
+  "expires_at": "2026-09-19T18:13:34.272483Z",
+  "read_set": [
+    {
+      "resource_id": "thread:thread-73",
+      "revision": 1
+    },
+    {
+      "resource_id": "policy:thread-policy",
+      "revision": 1
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "state",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": {
+        "title": "Ambiguous integration failure",
+        "status": "blocked",
+        "retries": 0,
+        "reason_count": 0,
+        "draft_count": 0,
+        "service_calls": 0
+      }
+    },
+    {
+      "evidence_id": "failure-log",
+      "kind": "text",
+      "mime_type": "text/plain",
+      "required": true,
+      "trust": "untrusted",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": "Runner terminated. Last log line: loading configuration. No reliable error classification is available."
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "f-7a35c4f055484d2ab2b8e10a21a274b5:recovery",
+      "node_id": "recovery",
+      "kind": "choice",
+      "question": "Which immediate recovery route fits the reported failure?",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "automatic",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "options": [
+        {
+          "id": "retry",
+          "label": "Retry tests",
+          "meaning": "A transient failure prevented the tests from running. Retry once.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "investigate",
+          "label": "Investigate",
+          "meaning": "A persistent or unresolved issue needs engineering investigation. Stop autonomous recovery.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "request_reasoning",
+          "label": "Request reasoning",
+          "meaning": "The evidence is too ambiguous. Obtain one brief LLM analysis before judging again.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "pause",
+          "label": "Pause",
+          "meaning": "Do not act further; leave this thread for a human.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        }
+      ]
+    },
+    {
+      "decision_id": "f-7a35c4f055484d2ab2b8e10a21a274b5:note",
+      "node_id": "note",
+      "kind": "input",
+      "question": "Add a free-text note to this thread.",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    },
+    {
+      "decision_id": "f-7a35c4f055484d2ab2b8e10a21a274b5:attach_image",
+      "node_id": "attach_image",
+      "kind": "input",
+      "question": "Attach PNG, JPEG or WebP evidence. It will be required evidence in subsequent frames.",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-73"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "mime_type": {
+            "enum": [
+              "image/png",
+              "image/jpeg",
+              "image/webp"
+            ]
+          },
+          "data_base64": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 350000
+          }
+        },
+        "required": [
+          "mime_type",
+          "data_base64"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    }
+  ],
+  "disclosure": {
+    "requested": "horizon",
+    "provided": "horizon",
+    "preview": {
+      "graph_id": "thread-recovery",
+      "graph_version": "1",
+      "horizon": 2,
+      "completeness": "partial",
+      "nodes": [
+        "analysis_result",
+        "attach_image",
+        "done",
+        "draft_result",
+        "note",
+        "recovery",
+        "update"
+      ],
+      "edges": [
+        {
+          "from": "recovery",
+          "to": "update",
+          "on": "retry",
+          "guard_summary": "Demo fixture succeeds on its single retry; real test outcomes would add branches."
+        },
+        {
+          "from": "recovery",
+          "to": "analysis_result",
+          "on": "request_reasoning"
+        },
+        {
+          "from": "analysis_result",
+          "to": "recovery",
+          "on": "submit"
+        },
+        {
+          "from": "recovery",
+          "to": "done",
+          "on": "investigate"
+        },
+        {
+          "from": "recovery",
+          "to": "done",
+          "on": "pause"
+        },
+        {
+          "from": "update",
+          "to": "draft_result",
+          "on": "draft_update"
+        },
+        {
+          "from": "update",
+          "to": "done",
+          "on": "finish"
+        }
+      ]
+    }
+  },
+  "service_calls_remaining": 3,
+  "required_features": [
+    "core@0.1"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "dgp": "0.1",
+  "record_type": "prepared_operation_catalogue",
+  "catalogue_id": "farm-operations",
+  "catalogue_version": "1",
+  "application_id": "farm-energy",
+  "operations": [
+    {
+      "operation_id": "farm.evaluation_decision",
+      "operation_version": "1",
+      "kind": "query",
+      "description": "Read a bounded assessment view of an existing immutable frame.",
+      "variables_schema": {
+        "type": "object",
+        "properties": {
+          "frame_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "frame_id"
+        ],
+        "additionalProperties": false
+      },
+      "result_definition": "FrameProjection",
+      "required_features": [
+        "frame-projections@0.1"
+      ],
+      "max_retrieval_cost_class": "small"
+    }
+  ]
+}

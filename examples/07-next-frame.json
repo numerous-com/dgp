@@ -1,0 +1,204 @@
+{
+  "dgp": "0.1",
+  "frame_id": "f-b715c927957f40cf94a94043686ac386",
+  "surface_id": "thread-42",
+  "graph_id": "thread-recovery",
+  "graph_version": "1",
+  "policy_ref": "thread-policy@1",
+  "created_at": "2026-09-19T17:58:34.269586Z",
+  "expires_at": "2026-09-19T18:13:34.269586Z",
+  "read_set": [
+    {
+      "resource_id": "thread:thread-42",
+      "revision": 2
+    },
+    {
+      "resource_id": "policy:thread-policy",
+      "revision": 1
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "state",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "observed",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": {
+        "title": "Transient CI failure",
+        "status": "ready",
+        "retries": 1,
+        "reason_count": 0,
+        "draft_count": 0,
+        "service_calls": 0
+      }
+    },
+    {
+      "evidence_id": "failure-log",
+      "kind": "text",
+      "mime_type": "text/plain",
+      "required": true,
+      "trust": "untrusted",
+      "source": {
+        "kind": "application",
+        "id": "threaddesk"
+      },
+      "content": "Connection timed out before any test assertions ran. Database health was temporarily unavailable."
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "f-b715c927957f40cf94a94043686ac386:update",
+      "node_id": "update",
+      "kind": "choice",
+      "question": "Should this completed recovery receive a status-update draft?",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "automatic",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-42"
+        ],
+        "depends_on": []
+      },
+      "options": [
+        {
+          "id": "draft_update",
+          "label": "Draft an update",
+          "meaning": "Prepare a short factual update for human review.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        },
+        {
+          "id": "finish",
+          "label": "Finish without update",
+          "meaning": "No status draft is needed.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": true
+          }
+        }
+      ]
+    },
+    {
+      "decision_id": "f-b715c927957f40cf94a94043686ac386:note",
+      "node_id": "note",
+      "kind": "input",
+      "question": "Add a free-text note to this thread.",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-42"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    },
+    {
+      "decision_id": "f-b715c927957f40cf94a94043686ac386:attach_image",
+      "node_id": "attach_image",
+      "kind": "input",
+      "question": "Attach PNG, JPEG or WebP evidence. It will be required evidence in subsequent frames.",
+      "evidence_ids": [
+        "state",
+        "failure-log"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "thread:thread-42"
+        ],
+        "depends_on": []
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "mime_type": {
+            "enum": [
+              "image/png",
+              "image/jpeg",
+              "image/webp"
+            ]
+          },
+          "data_base64": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 350000
+          }
+        },
+        "required": [
+          "mime_type",
+          "data_base64"
+        ],
+        "additionalProperties": false
+      },
+      "effect": {
+        "world_mutation": "internal",
+        "recovery": "unknown",
+        "data_egress": "none",
+        "speculation": "forbidden",
+        "required_actor": "any_authorized",
+        "simulation": true
+      }
+    }
+  ],
+  "disclosure": {
+    "requested": "next",
+    "provided": "next"
+  },
+  "service_calls_remaining": 3,
+  "required_features": [
+    "core@0.1"
+  ]
+}

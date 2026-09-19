@@ -1,0 +1,99 @@
+{
+  "dgp": "0.1",
+  "record_type": "capability_catalogue",
+  "catalogue_id": "farm-capabilities",
+  "catalogue_version": "1",
+  "application_id": "farm-energy",
+  "coverage": "partial",
+  "scope_description": "Farm design studies; account administration is not described.",
+  "interfaces": [
+    {
+      "interface_id": "farm-ui",
+      "kind": "ui",
+      "description": "Native map, forms, and charts.",
+      "descriptor_uri": "https://farm.example.invalid/app",
+      "auth_ref": "configured-farm-session"
+    },
+    {
+      "interface_id": "farm-api",
+      "kind": "http_api",
+      "description": "Native load import and result export.",
+      "descriptor_uri": "https://farm.example.invalid/openapi.json",
+      "auth_ref": "configured-farm-session"
+    },
+    {
+      "interface_id": "farm-mcp",
+      "kind": "mcp",
+      "description": "Native tools and optional DGP wrapper.",
+      "descriptor_uri": "https://farm.example.invalid/mcp",
+      "auth_ref": "configured-farm-session"
+    },
+    {
+      "interface_id": "farm-cli",
+      "kind": "cli",
+      "description": "Installed farm command adapter; never shell interpolation.",
+      "descriptor_uri": "urn:example:farm-cli:descriptor",
+      "auth_ref": "configured-farm-session"
+    },
+    {
+      "interface_id": "farm-dgp",
+      "kind": "dgp",
+      "description": "Configuration and budgeted scenario studies.",
+      "descriptor_uri": "https://farm.example.invalid/.well-known/dgp",
+      "auth_ref": "configured-farm-session"
+    },
+    {
+      "interface_id": "farm-graphql",
+      "kind": "graphql",
+      "description": "Optional structured reads and DGP binding.",
+      "descriptor_uri": "https://farm.example.invalid/graphql",
+      "auth_ref": "configured-farm-session"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability_id": "configure-study",
+      "description": "Set location and study inputs.",
+      "dgp_support": "native",
+      "interface_ids": [
+        "farm-ui",
+        "farm-api",
+        "farm-dgp",
+        "farm-graphql"
+      ],
+      "canonical_operation_id": "farm.configure"
+    },
+    {
+      "capability_id": "evaluate-scenarios",
+      "description": "Admit bounded simulations without changing selected design.",
+      "dgp_support": "native",
+      "interface_ids": [
+        "farm-ui",
+        "farm-api",
+        "farm-dgp",
+        "farm-mcp"
+      ],
+      "canonical_operation_id": "farm.evaluate"
+    },
+    {
+      "capability_id": "import-load-profile",
+      "description": "Validate an uploaded CSV and create an immutable load profile.",
+      "dgp_support": "handoff",
+      "interface_ids": [
+        "farm-ui",
+        "farm-api",
+        "farm-cli"
+      ],
+      "canonical_operation_id": "farm.load.import"
+    },
+    {
+      "capability_id": "style-report",
+      "description": "Visual layout outside the decision surface.",
+      "dgp_support": "not_exposed",
+      "interface_ids": [
+        "farm-ui"
+      ],
+      "canonical_operation_id": "farm.report.style"
+    }
+  ]
+}

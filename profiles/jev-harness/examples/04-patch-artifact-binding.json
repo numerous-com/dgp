@@ -1,0 +1,21 @@
+{
+  "repository_id": "example-repo",
+  "base_revision": "example-head-and-dirty-tree-snapshot",
+  "artifact_ref": "proposal-example-1",
+  "artifact_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "preimages": [
+    {
+      "path": "src/app.py",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "path": "tests/test_new.py",
+      "sha256": null
+    }
+  ],
+  "ownership": {
+    "agent_id": "example-agent",
+    "worktree_id": "isolated-proposal-1",
+    "branch_ref": "proposal/example"
+  }
+}

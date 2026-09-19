@@ -1,0 +1,31 @@
+{
+  "dgp": "0.1",
+  "name": "ThreadDesk",
+  "status": "experimental",
+  "features": [
+    "core@0.1",
+    "graph-preview@0.1",
+    "speculative-assessment@0.1",
+    "service-input@0.1",
+    "image-evidence@0.1"
+  ],
+  "evidence_modalities": [
+    "text",
+    "json",
+    "image"
+  ],
+  "decision_kinds": [
+    "choice",
+    "input"
+  ],
+  "input_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+  "links": {
+    "surfaces": "/dgp/surfaces",
+    "graphs": "/dgp/graphs",
+    "assessments": "/dgp/assessments",
+    "commits": "/dgp/commits",
+    "services": "/dgp/services"
+  },
+  "auth": "Bearer tokens, single local tenant. Principal comes from the server token map, never the request body.",
+  "idempotency_retention": "For the lifetime of this demo database; deleting it loses deduplication history."
+}

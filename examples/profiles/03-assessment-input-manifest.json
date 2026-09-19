@@ -1,0 +1,13 @@
+{
+  "frame_id": "frame-study",
+  "decision_id": "frame-study:evaluate_variants",
+  "projection_ids": [
+    "projection-study-eval-1"
+  ],
+  "consumed_evidence_ids": [
+    "study-basis",
+    "evaluation-capabilities"
+  ],
+  "omitted_optional_evidence_ids": [],
+  "contract_complete": true
+}

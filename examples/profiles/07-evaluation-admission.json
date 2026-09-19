@@ -1,0 +1,18 @@
+{
+  "batch_id": "batch-001",
+  "policy_ref": "farm-energy-policy@1",
+  "canonical_operation_id": "farm.evaluate",
+  "admission_mode": "all_or_nothing",
+  "items": [
+    {
+      "scenario_ref": "scenario-01",
+      "disposition": "job",
+      "job_id": "job-01"
+    },
+    {
+      "scenario_ref": "scenario-02",
+      "disposition": "job",
+      "job_id": "job-02"
+    }
+  ]
+}

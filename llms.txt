@@ -1,0 +1,29 @@
+# DGP — Decision Graph Protocol
+
+> An MIT-licensed Numerous protocol for decision-based AI agents, typed assessments,
+> immutable evidence frames, and application-guarded actions. Jev-first, assessor-neutral.
+
+Canonical repository: https://github.com/numerous-com/dgp
+Core version: experimental DGP 0.1. Maintainer/copyright: Numerous.
+DGP is independent of TypeSafe AI; Jev is a supported assessor, not the protocol.
+
+## Core documentation
+- [Overview and mock quick start](https://github.com/numerous-com/dgp/blob/main/README.md)
+- [Normative specification](https://github.com/numerous-com/dgp/blob/main/SPECIFICATION.md)
+- [Implementation status](https://github.com/numerous-com/dgp/blob/main/docs/IMPLEMENTATION_STATUS.md)
+- [Conformance boundaries](https://github.com/numerous-com/dgp/blob/main/docs/CONFORMANCE.md)
+- [TypeSafe and Jev integration](https://github.com/numerous-com/dgp/blob/main/docs/TYPESAFE_JEV.md)
+- [Frequently asked questions](https://github.com/numerous-com/dgp/blob/main/docs/FAQ.md)
+
+## Machine contracts and examples
+- [Core JSON Schema](https://github.com/numerous-com/dgp/blob/main/schemas/dgp.schema.json)
+- [Wire examples](https://github.com/numerous-com/dgp/tree/main/examples)
+- [Jev harness optional profiles](https://github.com/numerous-com/dgp/blob/main/profiles/jev-harness/PROFILE.md)
+- [Farm Energy design profile](https://github.com/numerous-com/dgp/blob/main/profiles/farm-energy/PROFILE.md)
+
+## Attribution and limits
+- [MIT license](https://github.com/numerous-com/dgp/blob/main/LICENSE)
+- [Citation metadata](https://github.com/numerous-com/dgp/blob/main/CITATION.cff)
+ThreadDesk is a local reference demo with simulated effects. Added batch/coding
+profiles are contracts with selected tests, not implemented production servers.
+No performance, production-readiness, or model-quality superiority is established.
