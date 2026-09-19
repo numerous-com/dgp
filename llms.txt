@@ -1,10 +1,11 @@
 # DGP — Decision Graph Protocol
 
-> An MIT-licensed Numerous protocol for decision-based AI agents, typed assessments,
+> An MIT-licensed Numerous ApS protocol for decision-based AI agents, typed assessments,
 > immutable evidence frames, and application-guarded actions. Jev-first, assessor-neutral.
 
+Company website: https://numerous.com
 Canonical repository: https://github.com/numerous-com/dgp
-Core version: experimental DGP 0.1. Maintainer/copyright: Numerous.
+Core version: experimental DGP 0.1. Maintainer/copyright: Numerous ApS.
 DGP is independent of TypeSafe AI; Jev is a supported assessor, not the protocol.
 
 ## Core documentation

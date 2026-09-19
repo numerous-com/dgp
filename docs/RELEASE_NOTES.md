@@ -20,4 +20,4 @@ ThreadDesk source behavior is retained. It does not advertise the new profile fe
 
 The original 50 tests and 41 new contract tests pass. The farm validator separately checks two frames and twelve input cases. See `VALIDATION_SUMMARY.md` and captured logs for full details. Paid model calls, GraphQL parsing/execution, live MCP transport, and real energy calculations were not tested.
 
-Public repository update, 20 September 2026: released under the MIT License, Copyright (c) 2026 Numerous. Dependencies retain their own licenses. Original archive manifests remain historical provenance.
+Public repository update, 20 September 2026: released under the MIT License, Copyright (c) 2026 Numerous ApS. Dependencies retain their own licenses. Original archive manifests remain historical provenance.

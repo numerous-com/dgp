@@ -1,7 +1,7 @@
 # Public repository publication — 20 September 2026
 
 The owner authorized publication at https://github.com/numerous-com/dgp under
-the MIT License, Copyright (c) 2026 Numerous.
+the MIT License, Copyright (c) 2026 Numerous ApS.
 
 The public package contains DGP source and examples only, without Claudestrate
 repository history, session data, credentials, or local databases. Historical

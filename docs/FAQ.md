@@ -2,7 +2,7 @@
 
 ## What is DGP?
 
-Decision Graph Protocol is an MIT-licensed protocol by Numerous for decision-based
+Decision Graph Protocol is an MIT-licensed protocol by Numerous ApS for decision-based
 AI agents. An application offers immutable evidence frames, typed decisions, and
 guarded transitions. Assessments describe judgments; commits request effects.
 
@@ -43,10 +43,10 @@ Farm Energy is a design profile. Read [implementation status](IMPLEMENTATION_STA
 
 ## Is DGP an official TypeSafe, MCP, or GraphQL standard?
 
-No. It is an independent experimental Numerous protocol, with documented
+No. It is an independent experimental Numerous ApS protocol, with documented
 interoperability references and optional mappings.
 
 ## What is the license?
 
 The code and documentation are released under the [MIT License](../LICENSE),
-Copyright (c) 2026 Numerous. Dependencies retain their respective licenses.
+Copyright (c) 2026 Numerous ApS. Dependencies retain their respective licenses.

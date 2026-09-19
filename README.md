@@ -3,7 +3,7 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Validation](https://github.com/numerous-com/dgp/actions/workflows/validate.yml/badge.svg)](https://github.com/numerous-com/dgp/actions/workflows/validate.yml)
 
-**Decision Graph Protocol (DGP)** is an open-source protocol by **Numerous** for
+**Decision Graph Protocol (DGP)** is an open-source protocol by **[Numerous ApS](https://numerous.com)** for
 building decision-based AI agents. Applications expose evidence, typed decisions,
 and guarded actions; an agent assesses the choices while application code retains
 control of permissions and effects.
@@ -12,7 +12,7 @@ DGP is designed for **Jev-first orchestration** using [TypeSafe AI's Jev decisio
 model](https://docs.typesafe.ai/introduction), with bounded LLM assistance when
 text or analysis is needed. Its core is assessor-neutral: deterministic resolvers,
 other models, and humans can use the same decision contracts. This is an
-independent Numerous project, not an official TypeSafe specification.
+independent Numerous ApS project, not an official TypeSafe specification.
 
 [Specification](SPECIFICATION.md) · [Quick start](#run-the-example) ·
 [TypeSafe / Jev integration](docs/TYPESAFE_JEV.md) ·
@@ -200,7 +200,7 @@ The controller has bounded steps and per-process service calls. Production durab
 
 ## License and attribution
 
-MIT License — Copyright (c) 2026 Numerous. See [LICENSE](LICENSE).
+MIT License — Copyright (c) 2026 Numerous ApS. See [LICENSE](LICENSE).
 Third-party dependencies retain their own licenses. TypeSafe and Jev names refer
 to their respective products; no endorsement is implied.
 

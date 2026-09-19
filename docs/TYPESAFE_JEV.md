@@ -1,6 +1,6 @@
 # TypeSafe AI, Jev, and Decision Graph Protocol
 
-DGP is a Numerous application protocol. Jev is TypeSafe AI's decision model.
+DGP is a Numerous ApS application protocol. Jev is TypeSafe AI's decision model.
 DGP describes evidence, decisions, permissions, and effects; Jev can assess
 the evidence and return a judgment used by a DGP client.
 
@@ -46,5 +46,5 @@ authorized human can produce assessments. The host retains authority regardless
 of the assessor. MCP and GraphQL mappings are documented separately; their
 presence does not imply an implemented transport server.
 
-TypeSafe and Jev are referenced for interoperability. Numerous maintains DGP
+TypeSafe and Jev are referenced for interoperability. Numerous ApS maintains DGP
 independently; this repository is not an official TypeSafe product or standard.

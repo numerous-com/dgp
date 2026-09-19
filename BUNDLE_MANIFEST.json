@@ -127,6 +127,10 @@
     "web/style.css"
   ],
   "license": "MIT",
-  "copyright": "Copyright (c) 2026 Numerous",
-  "repository": "https://github.com/numerous-com/dgp"
+  "copyright": "Copyright (c) 2026 Numerous ApS",
+  "repository": "https://github.com/numerous-com/dgp",
+  "publisher": {
+    "name": "Numerous ApS",
+    "website": "https://numerous.com"
+  }
 }

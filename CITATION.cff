@@ -3,7 +3,8 @@ message: "Please cite this repository when referring to Decision Graph Protocol.
 title: "DGP: Decision Graph Protocol for decision-based AI agents"
 type: software
 authors:
-  - name: Numerous
+  - name: Numerous ApS
+    website: "https://numerous.com"
 repository-code: "https://github.com/numerous-com/dgp"
 url: "https://github.com/numerous-com/dgp"
 license: MIT
