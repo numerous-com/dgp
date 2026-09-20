@@ -1,0 +1,18 @@
+{
+  "dgp": "0.1",
+  "assessment_id": "assessment-task-start",
+  "frame_id": "frame-task-start",
+  "decision_id": "frame-task-start:task.start",
+  "mode": "live",
+  "resolver": {
+    "kind": "rule",
+    "provider": "synthetic-fixture"
+  },
+  "result": {
+    "status": "answered",
+    "answer": {
+      "choice": "execute",
+      "input": {}
+    }
+  }
+}

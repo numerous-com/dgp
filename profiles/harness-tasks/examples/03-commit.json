@@ -1,0 +1,6 @@
+{
+  "dgp": "0.1",
+  "frame_id": "frame-task-start",
+  "decision_id": "frame-task-start:task.start",
+  "assessment_id": "assessment-task-start"
+}

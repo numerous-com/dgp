@@ -1,0 +1,10 @@
+{
+  "dgp": "0.1",
+  "profile": "harness-tasks@0.1",
+  "host_id": "host-demo",
+  "task_id": "task-demo-1",
+  "revision": 1,
+  "status": "queued",
+  "request_sha256": "c1d0b2d82da508de584deae3ceb804205d2a88928418de32fc55ad518e879cd6",
+  "result": null
+}
