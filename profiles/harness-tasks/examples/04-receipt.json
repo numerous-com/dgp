@@ -1,0 +1,30 @@
+{
+  "dgp": "0.1",
+  "receipt_id": "receipt-task-start",
+  "frame_id": "frame-task-start",
+  "decision_id": "frame-task-start:task.start",
+  "assessment_id": "assessment-task-start",
+  "submitted_by": "host-fixture-principal",
+  "status": "succeeded",
+  "committed_at": "2026-09-20T12:00:01Z",
+  "state_revision": 1,
+  "effect": {
+    "world_mutation": "internal",
+    "recovery": "unknown",
+    "data_egress": "approved_provider",
+    "speculation": "forbidden",
+    "required_actor": "any_authorized",
+    "simulation": false
+  },
+  "outcome": "Synthetic task admission accepted; no worker run or answer claimed.",
+  "next_frame_href": "urn:dgp:task:task-demo-1",
+  "extensions": {
+    "harness-tasks@0.1": {
+      "task_id": "task-demo-1",
+      "operation": "task.start",
+      "task_revision": 1,
+      "arguments_sha256": "a2d8a5e1caf1f171fa57b39142d2549dff6baff0f2cc0696e477a0ad649ef2c3",
+      "admission_status": "queued"
+    }
+  }
+}

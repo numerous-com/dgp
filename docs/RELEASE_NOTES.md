@@ -21,3 +21,7 @@ ThreadDesk source behavior is retained. It does not advertise the new profile fe
 The original 50 tests and 41 new contract tests pass. The farm validator separately checks two frames and twelve input cases. See `VALIDATION_SUMMARY.md` and captured logs for full details. Paid model calls, GraphQL parsing/execution, live MCP transport, and real energy calculations were not tested.
 
 Public repository update, 20 September 2026: released under the MIT License, Copyright (c) 2026 Numerous ApS. Dependencies retain their own licenses. Original archive manifests remain historical provenance.
+
+## Review from a runtime implementation — 22 September 2026
+
+`docs/REVIEW_FROM_RUNTIME_2026-09-22.md` records what three days of building and using a decision-first runtime on DGP 0.1 held, what the runtime had to add (flattened batch assessment over one state document, ratings kept with `choice_not_maximal`, rule-made decisions, provenance as a graded graph walk, qualification of generated artifacts, bounded review with one repair, gates and rewind, progress screening over streams, context selection as a decision), and a versioning recommendation: core stays 0.1; a 0.1.1 additive revision with three new optional profiles; 0.2 reserved for the breaking changes once a second implementation exists. Nothing in this note changes a schema.

@@ -1,0 +1,19 @@
+{
+  "dgp": "0.1",
+  "profile": "harness-tasks@0.1",
+  "host_id": "host-demo",
+  "task_id": "task-demo-1",
+  "stream_id": "stream-demo-1",
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "task.queued",
+      "data": {
+        "receipt_id": "receipt-task-start"
+      }
+    }
+  ],
+  "next_cursor": "opaque-host-issued-cursor",
+  "has_more": false,
+  "gap": false
+}

@@ -1,0 +1,109 @@
+{
+  "dgp": "0.1",
+  "frame_id": "frame-task-start",
+  "surface_id": "workspace-demo",
+  "graph_id": "harness-tasks",
+  "graph_version": "1",
+  "policy_ref": "host-policy-1",
+  "created_at": "2026-09-20T12:00:00Z",
+  "expires_at": "2026-09-20T12:05:00Z",
+  "read_set": [
+    {
+      "resource_id": "workspace-demo",
+      "revision": 0
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "basis-task-start",
+      "kind": "json",
+      "mime_type": "application/json",
+      "required": true,
+      "trust": "untrusted",
+      "source": {
+        "kind": "application",
+        "id": "synthetic-host"
+      },
+      "content": {
+        "operation": "task.start",
+        "arguments": {
+          "request": {
+            "prompt": "Explain the arithmetic helper.",
+            "enrich": true
+          }
+        }
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "frame-task-start:task.start",
+      "node_id": "task.start",
+      "kind": "choice",
+      "question": "Admit this exact bounded task?",
+      "evidence_ids": [
+        "basis-task-start"
+      ],
+      "dispatch": "on_request",
+      "execution": {
+        "conflict_keys": [
+          "workspace-demo"
+        ],
+        "depends_on": []
+      },
+      "options": [
+        {
+          "id": "execute",
+          "label": "execute",
+          "meaning": "Admit the prepared task; completion is separate",
+          "input_schema": {
+            "type": "object",
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "internal",
+            "recovery": "unknown",
+            "data_egress": "approved_provider",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": false
+          }
+        },
+        {
+          "id": "stop",
+          "label": "stop",
+          "meaning": "Decline this prepared task",
+          "input_schema": {
+            "type": "object",
+            "additionalProperties": false
+          },
+          "effect": {
+            "world_mutation": "none",
+            "recovery": "not_applicable",
+            "data_egress": "none",
+            "speculation": "forbidden",
+            "required_actor": "any_authorized",
+            "simulation": false
+          }
+        }
+      ]
+    }
+  ],
+  "disclosure": {
+    "requested": "next",
+    "provided": "next"
+  },
+  "service_calls_remaining": 0,
+  "required_features": [
+    "core@0.1",
+    "harness-tasks@0.1"
+  ],
+  "extensions": {
+    "harness-tasks@0.1": {
+      "task_id": "task-demo-1",
+      "operation": "task.start",
+      "task_revision": 0,
+      "arguments_sha256": "a2d8a5e1caf1f171fa57b39142d2549dff6baff0f2cc0696e477a0ad649ef2c3"
+    }
+  }
+}

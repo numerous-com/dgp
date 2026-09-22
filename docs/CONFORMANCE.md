@@ -6,6 +6,7 @@ This matrix describes the contents of this bundle, not every possible DGP implem
 |---|---|---|---|---|
 | Core frames/assessments/commits | Yes | Yes | 50 original tests, including HTTP/SQLite/concurrency | ThreadDesk |
 | Assessment batching amendment | Optional profile | Separate schema and examples | Selected offline binding/partial-response checks | Not implemented |
+| Durable harness tasks amendment | Optional profile | Separate schema and synthetic examples | Selected frame, admission, cursor and artifact contract checks | External Claudestrate harness; not the ThreadDesk server |
 | Coding tools amendment | Optional profile | Separate schema and examples | Selected operation/effect/artifact checks | Not implemented |
 | Graph previews and speculative records | Yes | Yes | Original tests | ThreadDesk |
 | Text/service inputs and image evidence | Yes | Yes | Fixture-based providers and image guards | ThreadDesk |
